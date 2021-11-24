@@ -1,0 +1,17 @@
+{
+	"name": "sandbox",
+	"version": "1.0.2",
+	"description": "Sandbox - Modern & Multipurpose Bootstrap 5 Template",
+	"main": "index.html",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"scss": "node-sass --watch ./src/scss -o ./src/css --output-style expanded"
+	},
+	"author": "elemis",
+	"homepage": "http://themes.iki-bir.com/sandbox/start.html",
+	"license": "ISC",
+	"dependencies": {
+		"bootstrap": "^5.0.1",
+		"node-sass": "^4.14.1"
+	}
+}
