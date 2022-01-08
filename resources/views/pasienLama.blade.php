@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="{{ asset('home') }}/src/img/favicon.png">
-	<title>Login Server - Puskesmas Tomalehu</title>
+	<title>Cek Antrian - Puskesmas Tomalehu</title>
 	<link rel="stylesheet" href="{{ asset('home') }}/src/css/plugins.css">
 	<link rel="stylesheet" href="{{ asset('home') }}/src/css/theme/aqua.css">
 	<link rel="stylesheet" href="{{ asset('home') }}/src/css/font/thicccboi.css">
@@ -47,30 +47,27 @@
 			<div class="container py-14 py-md-12">
 				<div class="row">
 					<div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
-						<p class="lead text-center mb-5">Masukkan Username dan Password Anda untuk masuk di halaman administrator</p>
-						<form class="contact-form" method="post" action="src/php/contact.php">
+						<p class="lead text-center mb-5">Masukkan NIK KTP untuk mengetahui informasi antrian Anda saat ini...</p>
+						@if (session('notification'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('notification') }}
+                          </div>
+                        @endif
+                        <form method="POST" action="{{ route('viewPasien') }}">
+                            {{ csrf_field() }}
 							<div class="messages"></div>
 							<div class="controls">
 								<div class="row gx-4">
-									<div class="col-md-6">
-										<div class="form-label-group mb-4">
-											<input id="form_name" type="text" name="username" class="form-control" placeholder="Jane" required="required" data-error="Username is required.">
-											<label for="form_name">Username</label>
-											<div class="help-block with-errors"></div>
-										</div>
-									</div>
-									<!-- /column -->
-									<div class="col-md-6">
-										<div class="form-label-group mb-4">
-											<input id="form_lastname" type="password" name="password" class="form-control" placeholder="Doe" required="required" data-error="Password is required.">
-											<label for="form_lastname">Password</label>
+									<div class="col-12">
+										<div class="form-label-group mb-6">
+											<input type="text" name="nik_ktp" class="form-control" required="required" data-error="Masukkan NIK">
+											<label for="form_name">Masukkan NIK KTP</label>
 											<div class="help-block with-errors"></div>
 										</div>
 									</div>
 									<!-- /column -->
 									<div class="col-12 text-center">
-										<input type="submit" class="btn btn-primary rounded-pill btn-send mb-3" value="Login">
-										<p class="text-muted"><strong>*</strong> These fields are required.</p>
+										<input type="submit" class="btn btn-primary rounded-pill btn-send mb-3" value="Cek Antrian">
 									</div>
 									<!-- /column -->
 								</div>

@@ -44,31 +44,30 @@
 		</header>
 		<!-- /header -->
 		<section class="wrapper bg-light angled upper-end">
+            @foreach ($dataPasien as $pasien)
+
+            @endforeach
 			<div class="container py-14 py-md-12">
 				<div class="row">
 					<div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
-						<p class="lead text-center mb-5">Masukkan NIK Anda untuk mengetahui informasi antrian Anda saat ini...</p>
-						<form class="contact-form" method="post" action="src/php/contact.php">
-							<div class="messages"></div>
-							<div class="controls">
-								<div class="row gx-4">
-									<div class="col-12">
-										<div class="form-label-group mb-6">
-											<input id="form_name" type="text" name="nik" class="form-control" placeholder="Jane" required="required" data-error="Masukkan NIK">
-											<label for="form_name">Masukkan NIK KTP</label>
-											<div class="help-block with-errors"></div>
-										</div>
-									</div>
-									<!-- /column -->
-									<div class="col-12 text-center">
-										<input type="submit" class="btn btn-primary rounded-pill btn-send mb-3" value="Cek Antrian">
-									</div>
-									<!-- /column -->
-								</div>
-								<!-- /.row -->
-							</div>
-							<!-- /.controls -->
-						</form>
+						<p class="lead text-center mb-5">Hai, {{ $dataPasien->nama_lengkap }}, Maaf anda belum mengantri hari ini
+                            <br>SIlahkan Mengambil Nomor Antrian terlebih dahulu untuk bisa konsultasi ke Dokter</p>
+                            <form method="post" action="{{ route('tambahpasienBaru') }}">
+                                {{ csrf_field() }}
+                                <div class="messages"></div>
+                                <div class="controls">
+                                    <div class="row gx-4">
+                                        <!-- /column -->
+                                        <div class="col-12 text-center">
+                                            <button type="submit" class="btn btn-success rounded-pill btn-send mb-3" >Ambil Nomor Antrian</button>
+                                            {{-- <br><a class="text-muted" href="{{ route("pasienLama") }}">Cek Antrian</a> --}}
+                                        </div>
+                                        <!-- /column -->
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- /.controls -->
+                            </form>
 						<!-- /form -->
 					</div>
 					<!-- /column -->

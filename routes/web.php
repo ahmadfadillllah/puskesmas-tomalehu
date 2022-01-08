@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PasienBaruController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +18,15 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/cek-antrian', function () {
-    return view('cekAntrian');
-})->name('cekAntrian');
-
 Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-Route::get('/registrasi-antrian', function () {
-    return view('register');
-})->name('register');
+
+//Pasien
+Route::get('/pasien-baru', 'PasienBaruController@index')->name('pasienBaru');
+Route::post('/pasien-baru/create', 'PasienBaruController@create')->name('tambahpasienBaru');
+
+Route::get('/pasien-lama', 'PasienLamaController@index')->name('pasienLama');
+
+Route::post('/view-pasien', 'PasienLamaController@view')->name('viewPasien');
