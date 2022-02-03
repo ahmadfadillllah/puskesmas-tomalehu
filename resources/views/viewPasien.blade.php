@@ -44,22 +44,26 @@
 		</header>
 		<!-- /header -->
 		<section class="wrapper bg-light angled upper-end">
-            @foreach ($dataPasien as $pasien)
-
-            @endforeach
 			<div class="container py-14 py-md-12">
 				<div class="row">
-					<div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
+
+                    @if ($dataAntrian->nomor_antrian == NULL)
+                    <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
 						<p class="lead text-center mb-5">Hai, {{ $dataPasien->nama_lengkap }}, Maaf anda belum mengantri hari ini
-                            <br>SIlahkan Mengambil Nomor Antrian terlebih dahulu untuk bisa konsultasi ke Dokter</p>
-                            <form method="post" action="{{ route('tambahpasienBaru') }}">
+                            <br>Silahkan Mengambil Nomor Antrian terlebih dahulu untuk bisa konsultasi ke Dokter</p>
+                            <form method="post" action="{{ route('tambahantrian') }}">
                                 {{ csrf_field() }}
-                                <div class="messages"></div>
                                 <div class="controls">
                                     <div class="row gx-4">
+                                        <div class="col-md-6">
+                                            <div class="form-label-group mb-4">
+                                                <input id="form_name" type="number" name="nik_ktp" value="{{ $dataPasien->nik_ktp }}" class="form-control" hidden>
+                                                <input id="form_name" type="number" name="nomor_antrian" value="{{ $nomor }}" class="form-control" hidden>
+                                            </div>
+                                        </div>
                                         <!-- /column -->
                                         <div class="col-12 text-center">
-                                            <button type="submit" class="btn btn-success rounded-pill btn-send mb-3" >Ambil Nomor Antrian</button>
+                                            <button type="submit" onclick="myFunction()" class="btn btn-success rounded-pill btn-send mb-3" >Ambil Nomor Antrian</button>
                                             {{-- <br><a class="text-muted" href="{{ route("pasienLama") }}">Cek Antrian</a> --}}
                                         </div>
                                         <!-- /column -->
@@ -70,6 +74,35 @@
                             </form>
 						<!-- /form -->
 					</div>
+                    @else
+                    <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
+                        @if (session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                          </div>
+                        @endif
+						<p class="lead text-center mb-5">Hai, {{ $dataPasien->nama_lengkap }}, Silahkan menunggu antrian anda
+                            <br>Berikut informasi tentang data diri anda</p>
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p class="lead text-left">NIK KTP          : {{ $dataPasien->nik_ktp }}</p>
+                                        <p class="lead text-left">Nama Lengkap     : {{ $dataPasien->nama_lengkap }}</p>
+                                        <p class="lead text-left">Umur             : {{ $dataPasien->umur }}</p>
+                                        <p class="lead text-left">Jenis Kelamin    : {{ $dataPasien->jenis_kelamin }}</p>
+                                        <p class="lead text-left">Alamat           : {{ $dataPasien->alamat }}</p>
+                                        <p class="lead text-left">No. Handphone    : {{ $dataPasien->no_hp }}</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="lead text-left">No. Antrian      : {{ $dataAntrian->nomor_antrian }}</p>
+                                    </div>
+                                </div>
+
+					</div>
+                    @endif
+
+
 					<!-- /column -->
 				</div>
 				<!-- /.row -->
@@ -88,5 +121,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
 	<script src="{{ asset('home') }}/src/js/plugins.js"></script>
 	<script src="{{ asset('home') }}/src/js/scripts.js"></script>
+    {{-- Menampilkan Data --}}
+    <script src="{{ asset('server/assets/js/tampil.js') }}"></script>
 </body>
 </html>

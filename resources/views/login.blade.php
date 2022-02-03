@@ -47,15 +47,21 @@
 			<div class="container py-14 py-md-12">
 				<div class="row">
 					<div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
-						<p class="lead text-center mb-5">Masukkan Username dan Password Anda untuk masuk di halaman administrator</p>
-						<form class="contact-form" method="post" action="src/php/contact.php">
+						<p class="lead text-center mb-5">Masukkan Email dan Password Anda untuk masuk di halaman administrator</p>
+						<form  method="post" action="{{ route('postlogin') }}">
+                            {{ csrf_field() }}
 							<div class="messages"></div>
+                            @if (session('notif'))
+                            <div class="alert alert-warning" role="alert">
+                                {{ session('notif') }}
+                            </div>
+                            @endif
 							<div class="controls">
 								<div class="row gx-4">
 									<div class="col-md-6">
 										<div class="form-label-group mb-4">
-											<input id="form_name" type="text" name="username" class="form-control" placeholder="Jane" required="required" data-error="Username is required.">
-											<label for="form_name">Username</label>
+											<input id="form_name" type="email" name="email" class="form-control" placeholder="Jane" required="required" data-error="Email is required.">
+											<label for="form_name">Email</label>
 											<div class="help-block with-errors"></div>
 										</div>
 									</div>
