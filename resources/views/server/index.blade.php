@@ -2,11 +2,23 @@
 
 @section('content')
 
+
+
 <!-- BEGIN: Content-->
 <div class="app-content content">
     <div class="content-body">
         <!-- Dashboard Ecommerce Starts -->
+        @if (session('notification'))
+        <script>
+            Swal.fire({
+                title: 'Upss',
+                text: '{{ session('notification') }}',
+                icon: 'info',
+                confirmButtonText: 'Ok'
+            })
 
+        </script>
+        @endif
         <div class="row match-height">
             <div class="col-lg-4 col-12">
                 <div class="row match-height">

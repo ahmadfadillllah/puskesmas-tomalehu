@@ -61,25 +61,47 @@
                                                 <input id="form_name" type="number" name="nomor_antrian" value="{{ $nomor }}" class="form-control" hidden>
                                             </div>
                                         </div>
+                                        <div class="col-12">
+                                            <p>Masukkan Kode Verifikasi yang telah dikirim ke No. WhatsApp anda, No. WhatsApp anda {{ $dataPasien->no_hp }}</p>
+                                            <div class="form-label-group mb-6">
+                                                <input type="text" name="kode" class="form-control" required="required" data-error="Masukkan Kode Verifikasi">
+                                                <label for="form_name">Masukkan Kode Verifikasi</label>
+                                                <div class="help-block with-errors"></div>
+                                                <small>*Sensitive Case</small>
+                                            </div>
+                                        </div>
                                         <!-- /column -->
                                         <div class="col-12 text-center">
-                                            <button type="submit" onclick="myFunction()" class="btn btn-success rounded-pill btn-send mb-3" >Ambil Nomor Antrian</button>
-                                            {{-- <br><a class="text-muted" href="{{ route("pasienLama") }}">Cek Antrian</a> --}}
+                                            <button type="submit" class="btn btn-success rounded-pill btn-send mb-3" >Ambil Nomor Antrian</button>
+                                            <br>
                                         </div>
+
+
                                         <!-- /column -->
                                     </div>
                                     <!-- /.row -->
                                 </div>
                                 <!-- /.controls -->
                             </form>
+                            <form action="{{ route("updateKode") }}" method="POST">
+                                {{ csrf_field() }}
+                                <input id="form_name" type="number" name="nik_ktp" value="{{ $dataPasien->nik_ktp }}" class="form-control" hidden>
+                                <center><button type="submit" class="btn btn-secondary btn-sm">Kirim ulang Kode Activation</button></center>
+                            </form>
 						<!-- /form -->
 					</div>
                     @else
                     <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
                         @if (session('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('success') }}
-                          </div>
+                        <script>
+                            Swal.fire({
+                                title: 'Upss',
+                                text: `{{ session('success') }}`,
+                                icon: 'info',
+                                confirmButtonText: 'Ok'
+                            })
+
+                        </script>
                         @endif
 						<p class="lead text-center mb-5">Hai, {{ $dataPasien->nama_lengkap }}, Silahkan menunggu antrian anda
                             <br>Berikut informasi tentang data diri anda</p>

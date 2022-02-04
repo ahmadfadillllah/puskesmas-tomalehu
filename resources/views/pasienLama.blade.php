@@ -6,9 +6,14 @@
 					<div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
 						<p class="lead text-center mb-5">Masukkan NIK KTP untuk mengetahui informasi antrian Anda saat ini...</p>
 						@if (session('notification'))
-                        <div class="alert alert-info" role="alert">
-                            {{ session('notification') }}
-                          </div>
+                        <script>
+                            Swal.fire({
+                                title: 'Information',
+                                text: '{{{ session('notification') }}}',
+                                icon: 'Success',
+                                confirmButtonText: 'Ok'
+                            })
+                        </script>
                         @endif
                         <form method="POST" action="{{ route('viewPasien') }}">
                             {{ csrf_field() }}
@@ -25,6 +30,7 @@
 									<!-- /column -->
 									<div class="col-12 text-center">
 										<input type="submit" class="btn btn-primary rounded-pill btn-send mb-3" value="Cek Antrian">
+                                        <br><a class="text-muted" href="{{ route("home") }}">Kembali ke Home</a>
 									</div>
 									<!-- /column -->
 								</div>

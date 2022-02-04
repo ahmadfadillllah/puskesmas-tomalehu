@@ -8,6 +8,10 @@
 	<link rel="stylesheet" href="{{ asset('home') }}/src/css/plugins.css">
 	<link rel="stylesheet" href="{{ asset('home') }}/src/css/theme/aqua.css">
 	<link rel="stylesheet" href="{{ asset('home') }}/src/css/font/thicccboi.css">
+    {{-- SweetAlert2 --}}
+    <script src="{{ asset('sweetalert2/dist') }}/sweetalert2.all.min.js"></script>
+    <script src="{{ asset('sweetalert2/dist') }}/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('sweetalert2/dist') }}/sweetalert2.min.css">
 </head>
 <body>
 	<div class="content-wrapper">

@@ -4,7 +4,7 @@
 			<div class="container py-14 py-md-12">
 				<div class="row">
 					<div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
-						<p class="lead text-center mb-5">Masukkan Informasi anda dibawah ini untuk mengambil nomor antrian
+						<p class="lead text-center mb-5">Masukkan Informasi anda dibawah ini dengan benar untuk mengambil nomor antrian
                             <br>
                             @error('nik_ktp')<div class="alert alert-danger" role="alert">
                                 {{ $message }}
@@ -12,9 +12,15 @@
                               @enderror
                         </p>
 						@if (session('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('success') }}
-                          </div>
+                        <script>
+                            Swal.fire({
+                                title: 'Information',
+                                text: '{{{ session('success') }}}',
+                                icon: 'Success',
+                                confirmButtonText: 'Ok'
+                            })
+
+                        </script>
                         @endif
                         <form method="post" id="ajaxModel" action="{{ route('tambahpasienBaru') }}">
                             {{ csrf_field() }}
@@ -23,7 +29,7 @@
 								<div class="row gx-4">
 									<div class="col-md-6">
 										<div class="form-label-group mb-4">
-											<input id="form_name" type="text" name="nik_ktp" class="form-control" placeholder="Jane" required="required" data-error="NIK KTP harus diisi.">
+											<input id="form_name" type="number" name="nik_ktp" class="form-control" placeholder="Jane" required="required" data-error="NIK KTP harus diisi.">
 											<label for="form_name">NIK KTP</label>
 											<div class="help-block with-errors"></div>
 

@@ -4,6 +4,17 @@
 
 <div class="app-content content">
     <div class="content-body">
+        @if (session('notification'))
+        <script>
+            Swal.fire({
+                title: 'Info',
+                text: '{{ session('notification') }}',
+                icon: 'info',
+                confirmButtonText: 'Ok'
+            })
+
+        </script>
+        @endif
         <div class="row match-height">
             <!-- Company Table Card -->
             <div class="col-lg-8 col-12">
@@ -43,7 +54,7 @@
                                 <h3 class="mb-0"><?php echo date('d'); ?></h3>
                             </div>
                             <div class="my-auto">
-                                <h4 class="card-title mb-25">{{ $jumlahPasien }}</h4>
+                                <h4 id="hasil" class="card-title mb-25">{{ $jumlahPasien }}</h4>
                                 <p class="card-text mb-0">Jumlah Antrian hari ini</p>
                             </div>
                         </div>
@@ -78,18 +89,43 @@
                         </div>
                         <br>
 
-
-                        <div class="bookmark-wrapper d-flex align-items-center">
-                            <ul class="nav navbar-nav bookmark-icons">
-                                <li><a href="/antrian/{{ $dataAntrian->nomor_antrian }}/keluhan" type="submit" class="btn btn-success">Panggil</a>
-                                    <a type="submit" class="btn btn-danger">Hapus</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <form action="/antrian/{{ $dataAntrian->nomor_antrian }}/keluhan" method="GET">
+                            <div class="bookmark-wrapper d-flex align-items-center">
+                                <ul class="nav navbar-nav bookmark-icons">
+                                    <input type="text" id="last-name-column" class="form-control" value="{{ $dataAntrian->id }}" name="id" hidden/>
+                                    <li>
+                                        <button type="submit" class="btn btn-success">Panggil</button>
+                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>
             </div>
         </div>
     </div>
     <!--/ Developer Meetup Card -->
+    {{-- Menampilkan Data --}}
+    <script src="{{ asset('server/assets/js/tampil.js') }}"></script>
+
+<script>
+    var table = document.getElementById("nilai"), sumHsl = 0;
+    for(var t = 1; t < table.rows.length; t++)
+    {
+        sumHsl = sumHsl + parseInt(table.rows[t].cells[3].innerHTML);
+    }
+    document.getElementById("hasil").innerHTML = "Sum Value = "+ sumHsl;
+
+</script>
+<script>
+    var table = document.getElementById("nilai"), sumHsl = 0;
+    for(var t = 1; t < table.rows.length; t++)
+    {
+        sumHsl = sumHsl + parseInt(table.rows[t].cells[3].innerHTML);
+    }
+    document.getElementById("hasil").innerHTML = "Sum Value = "+ sumHsl;
+
+</script>
+
 
 
     @endsection

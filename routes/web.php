@@ -33,6 +33,10 @@ Route::post('/tambah-antrian', 'PasienLamaController@tambahantrian')->name('tamb
 
 Route::post('/view-pasien', 'PasienLamaController@view')->name('viewPasien');
 
+Route::post('/update-kode', 'PasienLamaController@updateKode')->name('updateKode');
+
+Route::get('/cetak-struk', 'PasienLamaController@cetakStruk')->name('cetakStruk');
+
 
 Route::group(['middleware' => 'auth'], function(){
 

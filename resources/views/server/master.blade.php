@@ -44,6 +44,12 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 	<link  href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 
+    {{-- SweetAlert2 --}}
+
+    <script src="{{ asset('sweetalert2/dist') }}/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('sweetalert2/dist') }}/sweetalert2.min.css">
+    <script src="{{ asset('sweetalert2/dist') }}/sweetalert2.all.min.js"></script>
+
 
 
 </head>
@@ -213,8 +219,7 @@
         })
     </script>
 
-    {{-- Menampilkan Data --}}
-    <script src="{{ asset('server/assets/js/tampil.js') }}"></script>
+
 </body>
 <!-- END: Body-->
 

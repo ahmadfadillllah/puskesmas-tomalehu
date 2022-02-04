@@ -15,11 +15,16 @@ class AntrianController extends Controller
         $dataPasien = Pasien::orderBy('id', 'ASC')->get();
         $jumlahPasien = Antrian::wherenotNULL('nomor_antrian')->count();
         $dataAntrian = Antrian::orderBy('nomor_antrian', 'ASC')->wherenotNULL('nomor_antrian')->first();
+
         // dd($dataAntrian);
+        if(!$dataAntrian == NULL){
             return view('antrian.index',[
                 'dataPasien' => $dataPasien,
                 'jumlahPasien' => $jumlahPasien,
                 'dataAntrian' => $dataAntrian]);
+        }else{
+            return redirect()->route('server')->with('notification', 'Antrian Masih Kosong');
+        }
 
     }
 
@@ -34,7 +39,7 @@ class AntrianController extends Controller
 
     }
 
-    public function keluhan($id)
+    public function keluhan(Request $request ,$id)
     {
 
         // $dataPasien = DB::table('antrian')->join('pasien', 'antrian.pasien_nomor_antrian', 'pasien.nomor_antrian')->get();
@@ -42,13 +47,21 @@ class AntrianController extends Controller
         $dataPasien = DB::table('antrian')->join('pasien', 'antrian.pasien_id', 'pasien.id')->where('nomor_antrian', $id)->first();
         // dd($dataPasien);
 
+        $antrian = DB::table('antrian')->where('id', $request->id)->update(['status' => 'process']);
+
         return view('antrian.edit', ['dataPasien' => $dataPasien]);
     }
 
     public function updatekeluhan(Request $request)
     {
-        // dd($request->all());
 
+        $affected = DB::table('keluhan_pasien')->where('id', $request->id)->update(['keluhan' => $request->keluhan, 'jenis_obat' => $request->jenis_obat]);
 
+        $antrian = DB::table('antrian')->where('id', $request->id)->update(['nomor_antrian' => null, 'status' => 'done']);
+        if($affected && $antrian == true){
+            return redirect()->route('antrian')->with('notification', 'Pasien telah selesai');
+        }else{
+            return redirect()->route('antrian')->with('notification', 'Pasien gagal update');
+        }
     }
 }

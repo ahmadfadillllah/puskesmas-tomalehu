@@ -17,6 +17,7 @@
                             <div class="card-body">
                                 <form class="form" method="POST" action="/antrian/{{ $dataPasien->nomor_antrian }}/updatekeluhan">
                                     {{ csrf_field() }}
+                                    <input type="text" id="last-name-column" class="form-control" value="{{ $dataPasien->id }}" name="id" hidden/>
                                     <div class="row">
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">

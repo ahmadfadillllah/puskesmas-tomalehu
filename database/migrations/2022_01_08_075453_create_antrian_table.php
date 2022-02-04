@@ -17,7 +17,7 @@ class CreateAntrianTable extends Migration
             $table->id();
             $table->foreignId('pasien_id');
             $table->integer('nomor_antrian')->nullable();
-            $table->enum('status',['temporary', 'process', 'done']);
+            $table->string('status');
 
             $table->timestamps();
 

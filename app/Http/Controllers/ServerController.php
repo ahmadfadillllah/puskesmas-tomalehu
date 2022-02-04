@@ -22,7 +22,7 @@ class ServerController extends Controller
     {
 
         $dataPasien = DB::table('antrian')->join('pasien', 'antrian.pasien_id', 'pasien.id')
-        ->wherenotNULL('nomor_antrian')
+        ->wherenotNULL('nomor_antrian')->where('status', 'waiting')
         ->orderBy('nomor_antrian', 'ASC')->get();
 
         return $dataPasien;
