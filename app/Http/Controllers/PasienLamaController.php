@@ -54,8 +54,6 @@ class PasienLamaController extends Controller
 
                 $data = $data+$request->nomor_antrian;
 
-            }
-
                 $success = DB::table('antrian')->join('pasien', 'antrian.pasien_id', 'pasien.id')
                 ->where('pasien.nik_ktp', $request->nik_ktp)
                 ->update(['nomor_antrian' => $data, 'status' => 'waiting']);
@@ -63,6 +61,7 @@ class PasienLamaController extends Controller
                     if($success){
                         return redirect()->route('pasienLama')->with('notification', 'Berhasil Mengambil Nomor Antrian');
                     }
+            }
         }else{
             return redirect()->route('pasienLama')->with('notification', 'Kode Verifikasi Salah');
         }
@@ -117,7 +116,7 @@ class PasienLamaController extends Controller
        $response = curl_exec($curl);
        curl_close($curl);
 
-       if($response == true){
+       if($response){
 
            return redirect()->route('pasienLama')->with('notification', 'Berhasil Mengupdate Kode');
        }else{
