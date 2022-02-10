@@ -66,7 +66,8 @@
                 <ul class="nav navbar-nav bookmark-icons">
 
                     <li><a href="{{ route('server') }}" class="btn btn-primary">Dashboard</a></li>&nbsp;&nbsp;
-                    <li><a href="{{ route('antrian') }}" class="btn btn-info">Daftar Antrian</a></li>
+                    <li><a href="{{ route('antrian') }}" class="btn btn-info">Daftar Antrian</a></li>&nbsp;&nbsp;
+                    <li><a href="{{ route('daftar-pasien') }}" class="btn btn-info">Daftar Pasien</a></li>
                 </ul>
             </div>
 

@@ -44,6 +44,12 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/get', 'ServerController@list')->name('listPasien');
     Route::get('/serv', 'ServerController@index')->name('server');
 
+
+    //Daftar Pasien
+    Route::get('/daftar-pasien', 'PasienController@index')->name('daftar-pasien');
+    Route::get('/daftar-pasien/{id_pasien}/pasien', 'PasienController@editPasien');
+    Route::post('/daftar-pasien/{id_pasien}/updatepasien', 'PasienController@updatepasien');
+
     //Antrian
     Route::get('/antrian', 'AntrianController@index')->name('antrian');
     Route::get('/antrian/{nomor_antrian}/keluhan', 'AntrianController@keluhan');
