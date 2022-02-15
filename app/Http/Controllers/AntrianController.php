@@ -90,7 +90,7 @@ class AntrianController extends Controller
                  * Printer Harus Dishare
                  * Nama Printer Contoh: Generic
                  */
-                $connector = new WindowsPrintConnector("POS80");
+                $connector = new WindowsPrintConnector("POS8e0");
                 $printer = new Printer($connector);
 
                 /** RATA TENGAH */
@@ -136,11 +136,11 @@ class AntrianController extends Controller
 
                 /* Close printer */
                 $printer->close();
+                return redirect()->route('lihatAntrian')->with('notification', 'Berhasil Mencetak Struk, Silahkan mengambilnya');
             } catch (Exception $e) {
                 echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
             }
 
-            return redirect()->route('lihatAntrian')->with('notification', 'Berhasil Mencetak Struk, Silahkan mengambilnya');
 
         }
 
