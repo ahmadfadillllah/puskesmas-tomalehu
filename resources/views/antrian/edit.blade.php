@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- BEGIN: Content-->
-<div class="app-content content ">
+<div class="app-content content">
     <div class="content-wrapper container-xxl p-0">
         <div class="content-body">
             <!-- Basic multiple Column Form section start -->

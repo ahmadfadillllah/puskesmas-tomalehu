@@ -35,8 +35,6 @@ Route::post('/view-pasien', 'PasienLamaController@view')->name('viewPasien');
 
 Route::post('/update-kode', 'PasienLamaController@updateKode')->name('updateKode');
 
-Route::get('/cetak-struk', 'PasienLamaController@cetakStruk')->name('cetakStruk');
-
 
 Route::group(['middleware' => 'auth'], function(){
 
@@ -54,6 +52,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/antrian', 'AntrianController@index')->name('antrian');
     Route::get('/antrian/{nomor_antrian}/keluhan', 'AntrianController@keluhan');
     Route::post('/antrian/{nomor_antrian}/updatekeluhan', 'AntrianController@updatekeluhan');
+
+    Route::get('/lihat-antrian', 'AntrianController@lihatAntrian')->name('lihatAntrian');
+    Route::post('/lihat-antrian/cetak', 'AntrianController@cetakAntrian')->name('cetakAntrian');
 
 });
 

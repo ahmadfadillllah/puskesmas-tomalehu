@@ -67,7 +67,8 @@
 
                     <li><a href="{{ route('server') }}" class="btn btn-primary">Dashboard</a></li>&nbsp;&nbsp;
                     <li><a href="{{ route('antrian') }}" class="btn btn-info">Daftar Antrian</a></li>&nbsp;&nbsp;
-                    <li><a href="{{ route('daftar-pasien') }}" class="btn btn-info">Daftar Pasien</a></li>
+                    <li><a href="{{ route('daftar-pasien') }}" class="btn btn-info">Daftar Pasien</a></li>&nbsp;&nbsp;
+                    <li><a href="{{ route('lihatAntrian') }}" class="btn btn-info">Cetak Antrian</a></li>
                 </ul>
             </div>
 

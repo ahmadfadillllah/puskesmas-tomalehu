@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Mike42\Escpos\Printer;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+
 use Illuminate\Http\Request;
 use App\Pasien;
 use App\Antrian;
 use Illuminate\Support\Facades\DB;
-use Yajra\DataTables\Facades\DataTables;
+use Exception;
 
 class AntrianController extends Controller
 {
@@ -63,5 +66,83 @@ class AntrianController extends Controller
         }else{
             return redirect()->route('antrian')->with('notification', 'Pasien gagal update');
         }
+    }
+
+    public function lihatAntrian()
+    {
+        return view('antrian.cetakantrian');
+    }
+
+    public function cetakAntrian(Request $request)
+    {
+
+        $dataAntrian = DB::table('antrian')->join('pasien', 'antrian.pasien_id', 'pasien.id')
+        ->where('pasien.nik_ktp', $request->nik_ktp)->first();
+
+        // dd($dataAntrian);
+
+        if($dataAntrian->nomor_antrian == NULL){
+            return redirect()->route('lihatAntrian')->with('notification', 'NIK KTP tersebut belum mengambil nomor antrian');
+        }else{
+
+            try {
+                /**
+                 * Printer Harus Dishare
+                 * Nama Printer Contoh: Generic
+                 */
+                $connector = new WindowsPrintConnector("POS80");
+                $printer = new Printer($connector);
+
+                /** RATA TENGAH */
+                $printer->initialize();
+                $printer->setFont(Printer::FONT_A);
+                $printer->setJustification(Printer::JUSTIFY_CENTER);
+                $printer->text("PUSKESMAS TOMALEHU\n");
+
+                $printer->initialize();
+                $printer->setFont(Printer::FONT_B);
+                $printer->setJustification(Printer::JUSTIFY_CENTER);
+                $printer->text($dataAntrian->updated_at. "\n");
+                $printer->setLineSpacing(5);
+                $printer->text("\n");
+
+                $printer->initialize();
+                $printer->setFont(Printer::FONT_A);
+                $printer->setJustification(Printer::JUSTIFY_LEFT);
+                $printer->text("NIK  : $dataAntrian->nik_ktp\n");
+                $printer->text("Nama : $dataAntrian->nama_lengkap\n");
+                $printer->text("\n");
+
+                $printer->initialize();
+                $printer->setFont(Printer::FONT_A);
+                $printer->setJustification(Printer::JUSTIFY_CENTER);
+                $printer->text("Nomor Antrian Anda Adalah :\n");
+                $printer->text("\n");
+
+                $printer->initialize();
+                $printer->setJustification(Printer::JUSTIFY_CENTER);
+                $printer->setTextSize(6, 4);
+                $printer->text("P"."$dataAntrian->nomor_antrian" . "\n");
+                $printer->text("\n");
+
+                $printer->initialize();
+                $printer->setFont(Printer::FONT_A);
+                $printer->setJustification(Printer::JUSTIFY_CENTER);
+                $printer->text("Silahkan Menunggu Antrian Anda\n");
+                $printer->text("Terima Kasih\n");
+                $printer->text("\n\n\n");
+
+                $printer->cut();
+
+                /* Close printer */
+                $printer->close();
+            } catch (Exception $e) {
+                echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
+            }
+
+            return redirect()->route('lihatAntrian')->with('notification', 'Berhasil Mencetak Struk, Silahkan mengambilnya');
+
+        }
+
     }
 }
