@@ -117,7 +117,7 @@
                                         <p class="lead text-left">No. Handphone    : {{ $dataPasien->no_hp }}</p>
                                     </div>
                                     <div class="col-6">
-                                        <p class="lead text-left">No. Antrian      : {{ $dataAntrian->nomor_antrian }}</p>
+                                        <p class="lead text-left">No. Antrian      : P{{ $dataAntrian->nomor_antrian }}</p>
                                     </div>
                                 </div>
 
