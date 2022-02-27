@@ -87,64 +87,6 @@ class AntrianController extends Controller
             return redirect()->route('lihatAntrian')->with('notification', 'NIK tersebut belum mengambil nomor antrian');
         }else{
 
-<<<<<<< HEAD
-            try {
-                /**
-                 * Printer Harus Dishare
-                 * Nama Printer Contoh: Generic
-                 */
-                $connector = new WindowsPrintConnector("smb://192.168.67.249/POS80");
-                $printer = new Printer($connector);
-
-                /** RATA TENGAH */
-                $printer->initialize();
-                $printer->setFont(Printer::FONT_A);
-                $printer->setJustification(Printer::JUSTIFY_CENTER);
-                $printer->text("PUSKESMAS TOMALEHU\n");
-
-                $printer->initialize();
-                $printer->setFont(Printer::FONT_B);
-                $printer->setJustification(Printer::JUSTIFY_CENTER);
-                $printer->text($dataAntrian->updated_at. "\n");
-                $printer->setLineSpacing(5);
-                $printer->text("\n");
-
-                $printer->initialize();
-                $printer->setFont(Printer::FONT_A);
-                $printer->setJustification(Printer::JUSTIFY_LEFT);
-                $printer->text("NIK  : $dataAntrian->nik_ktp\n");
-                $printer->text("Nama : $dataAntrian->nama_lengkap\n");
-                $printer->text("\n");
-
-                $printer->initialize();
-                $printer->setFont(Printer::FONT_A);
-                $printer->setJustification(Printer::JUSTIFY_CENTER);
-                $printer->text("Nomor Antrian Anda Adalah :\n");
-                $printer->text("\n");
-
-                $printer->initialize();
-                $printer->setJustification(Printer::JUSTIFY_CENTER);
-                $printer->setTextSize(6, 4);
-                $printer->text("P"."$dataAntrian->nomor_antrian" . "\n");
-                $printer->text("\n");
-
-                $printer->initialize();
-                $printer->setFont(Printer::FONT_A);
-                $printer->setJustification(Printer::JUSTIFY_CENTER);
-                $printer->text("Silahkan Menunggu Antrian Anda\n");
-                $printer->text("Terima Kasih\n");
-                $printer->text("\n\n\n");
-
-                $printer->cut();
-
-                /* Close printer */
-                $printer->close();
-                return redirect()->route('lihatAntrian')->with('notification', 'Berhasil Mencetak Struk, Silahkan mengambilnya');
-            } catch (Exception $e) {
-                echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
-            }
-
-=======
             print(<<<EOD
             <script src="https://cdn.jsdelivr.net/npm/recta/dist/recta.js"></script>
             <script type="text/javascript">
@@ -174,82 +116,10 @@ class AntrianController extends Controller
 EOD);
 
             return view('antrian.cetakantrian')->with('notification', 'Berhasil Mencetak Struk');
->>>>>>> cddeab58227095e44bfb42e3e27c7a96c0970ead
 
         }
 
     }
 
-    // public function cetakAntrian(Request $request)
-    // {
 
-    //     $dataAntrian = DB::table('antrian')->join('pasien', 'antrian.pasien_id', 'pasien.id')
-    //     ->where('pasien.nik_ktp', $request->nik_ktp)->first();
-
-    //     // dd($dataAntrian);
-
-    //     if($dataAntrian->nomor_antrian == NULL){
-    //         return redirect()->route('lihatAntrian')->with('notification', 'NIK KTP tersebut belum mengambil nomor antrian');
-    //     }else{
-
-    //         try {
-    //             /**
-    //              * Printer Harus Dishare
-    //              * Nama Printer Contoh: Generic
-    //              */
-    //             $connector = new WindowsPrintConnector("POS80 Printer(5)");
-    //             $printer = new Printer($connector);
-
-    //             /** RATA TENGAH */
-    //             $printer->initialize();
-    //             $printer->setFont(Printer::FONT_A);
-    //             $printer->setJustification(Printer::JUSTIFY_CENTER);
-    //             $printer->text("PUSKESMAS TOMALEHU\n");
-
-    //             $printer->initialize();
-    //             $printer->setFont(Printer::FONT_B);
-    //             $printer->setJustification(Printer::JUSTIFY_CENTER);
-    //             $printer->text($dataAntrian->updated_at. "\n");
-    //             $printer->setLineSpacing(5);
-    //             $printer->text("\n");
-
-    //             $printer->initialize();
-    //             $printer->setFont(Printer::FONT_A);
-    //             $printer->setJustification(Printer::JUSTIFY_LEFT);
-    //             $printer->text("NIK  : $dataAntrian->nik_ktp\n");
-    //             $printer->text("Nama : $dataAntrian->nama_lengkap\n");
-    //             $printer->text("\n");
-
-    //             $printer->initialize();
-    //             $printer->setFont(Printer::FONT_A);
-    //             $printer->setJustification(Printer::JUSTIFY_CENTER);
-    //             $printer->text("Nomor Antrian Anda Adalah :\n");
-    //             $printer->text("\n");
-
-    //             $printer->initialize();
-    //             $printer->setJustification(Printer::JUSTIFY_CENTER);
-    //             $printer->setTextSize(6, 4);
-    //             $printer->text("P"."$dataAntrian->nomor_antrian" . "\n");
-    //             $printer->text("\n");
-
-    //             $printer->initialize();
-    //             $printer->setFont(Printer::FONT_A);
-    //             $printer->setJustification(Printer::JUSTIFY_CENTER);
-    //             $printer->text("Silahkan Menunggu Antrian Anda\n");
-    //             $printer->text("Terima Kasih\n");
-    //             $printer->text("\n\n\n");
-
-    //             $printer->cut();
-
-    //             /* Close printer */
-    //             $printer->close();
-    //         } catch (Exception $e) {
-    //             echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
-    //         }
-    //         return redirect()->route('lihatAntrian')->with('notification', 'Berhasil Mencetak Struk, Silahkan mengambilnya');
-
-
-    //     }
-
-    // }
 }
