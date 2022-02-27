@@ -70,21 +70,24 @@ class AntrianController extends Controller
 
     public function lihatAntrian()
     {
+
         return view('antrian.cetakantrian');
     }
 
     public function cetakAntrian(Request $request)
     {
 
-        $dataAntrian = DB::table('antrian')->join('pasien', 'antrian.pasien_id', 'pasien.id')
-        ->where('pasien.nik_ktp', $request->nik_ktp)->first();
+        $dataPasien = DB::table('antrian')
+        ->join('pasien', 'antrian.pasien_id', 'pasien.id')
+        ->where('nik_ktp', $request->nik_ktp)->first();
 
-        // dd($dataAntrian);
+        // dd($dataPasien);
 
-        if($dataAntrian->nomor_antrian == NULL){
-            return redirect()->route('lihatAntrian')->with('notification', 'NIK KTP tersebut belum mengambil nomor antrian');
+        if($dataPasien->nomor_antrian == NULL){
+            return redirect()->route('lihatAntrian')->with('notification', 'NIK tersebut belum mengambil nomor antrian');
         }else{
 
+<<<<<<< HEAD
             try {
                 /**
                  * Printer Harus Dishare
@@ -141,8 +144,112 @@ class AntrianController extends Controller
                 echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
             }
 
+=======
+            print(<<<EOD
+            <script src="https://cdn.jsdelivr.net/npm/recta/dist/recta.js"></script>
+            <script type="text/javascript">
+              var printer = new Recta('7835492945', '1811')
+
+                printer.open().then(function () {
+                printer.align('center')
+                    .text('PUSKESMAS TOMALEHU')
+                    .bold(true)
+                    .text('$dataPasien->updated_at')
+                    .bold(false)
+                    .text('')
+                printer.align('left')
+                    .text('Nama : $dataPasien->nama_lengkap')
+                    .text('NIK  : $dataPasien->nik_ktp')
+                    .text('')
+                printer.align('center')
+                    .text('Nomor Antrian Anda:')
+                    .text('')
+                    .text('P$dataPasien->nomor_antrian')
+                    .text('')
+                    .text('Terimakasih telah menunggu')
+                    .cut()
+                    .print()
+                })
+            </script>
+EOD);
+
+            return view('antrian.cetakantrian')->with('notification', 'Berhasil Mencetak Struk');
+>>>>>>> cddeab58227095e44bfb42e3e27c7a96c0970ead
 
         }
 
     }
+
+    // public function cetakAntrian(Request $request)
+    // {
+
+    //     $dataAntrian = DB::table('antrian')->join('pasien', 'antrian.pasien_id', 'pasien.id')
+    //     ->where('pasien.nik_ktp', $request->nik_ktp)->first();
+
+    //     // dd($dataAntrian);
+
+    //     if($dataAntrian->nomor_antrian == NULL){
+    //         return redirect()->route('lihatAntrian')->with('notification', 'NIK KTP tersebut belum mengambil nomor antrian');
+    //     }else{
+
+    //         try {
+    //             /**
+    //              * Printer Harus Dishare
+    //              * Nama Printer Contoh: Generic
+    //              */
+    //             $connector = new WindowsPrintConnector("POS80 Printer(5)");
+    //             $printer = new Printer($connector);
+
+    //             /** RATA TENGAH */
+    //             $printer->initialize();
+    //             $printer->setFont(Printer::FONT_A);
+    //             $printer->setJustification(Printer::JUSTIFY_CENTER);
+    //             $printer->text("PUSKESMAS TOMALEHU\n");
+
+    //             $printer->initialize();
+    //             $printer->setFont(Printer::FONT_B);
+    //             $printer->setJustification(Printer::JUSTIFY_CENTER);
+    //             $printer->text($dataAntrian->updated_at. "\n");
+    //             $printer->setLineSpacing(5);
+    //             $printer->text("\n");
+
+    //             $printer->initialize();
+    //             $printer->setFont(Printer::FONT_A);
+    //             $printer->setJustification(Printer::JUSTIFY_LEFT);
+    //             $printer->text("NIK  : $dataAntrian->nik_ktp\n");
+    //             $printer->text("Nama : $dataAntrian->nama_lengkap\n");
+    //             $printer->text("\n");
+
+    //             $printer->initialize();
+    //             $printer->setFont(Printer::FONT_A);
+    //             $printer->setJustification(Printer::JUSTIFY_CENTER);
+    //             $printer->text("Nomor Antrian Anda Adalah :\n");
+    //             $printer->text("\n");
+
+    //             $printer->initialize();
+    //             $printer->setJustification(Printer::JUSTIFY_CENTER);
+    //             $printer->setTextSize(6, 4);
+    //             $printer->text("P"."$dataAntrian->nomor_antrian" . "\n");
+    //             $printer->text("\n");
+
+    //             $printer->initialize();
+    //             $printer->setFont(Printer::FONT_A);
+    //             $printer->setJustification(Printer::JUSTIFY_CENTER);
+    //             $printer->text("Silahkan Menunggu Antrian Anda\n");
+    //             $printer->text("Terima Kasih\n");
+    //             $printer->text("\n\n\n");
+
+    //             $printer->cut();
+
+    //             /* Close printer */
+    //             $printer->close();
+    //         } catch (Exception $e) {
+    //             echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
+    //         }
+    //         return redirect()->route('lihatAntrian')->with('notification', 'Berhasil Mencetak Struk, Silahkan mengambilnya');
+
+
+    //     }
+
+    // }
 }

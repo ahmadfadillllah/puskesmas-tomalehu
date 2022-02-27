@@ -73,10 +73,10 @@ class PasienLamaController extends Controller
         // dd($request->all());
         $dataPasien = Pasien::all()->where('nik_ktp',$request->nik_ktp)->first();
         // dd($dataPasien);
-        $kode  = pinActivation::all()->where('id', $dataPasien->id)->first();
         // dd($kode);
-       $update =  DB::table('pin_activation')->where('id', $dataPasien->id) ->update(['kode' => Str::random(5)]);
+        $update =  DB::table('pin_activation')->where('id', $dataPasien->id) ->update(['kode' => Str::random(5)]);
 
+        $kode  = pinActivation::all()->where('id', $dataPasien->id)->first();
         $token = "SX8w5onAy95QPzB8ZdkYKRrMW78uEn1LD8MNz5SVB6Jwa73f2P";
         $phone = $dataPasien->no_hp; //atau bisa menggunakan 62812xxxxxxx
         $message = "Hai $dataPasien->nama_lengkap, PIN Antrian anda adalah [$kode->kode], Mohon untuk tidak menyebarkan kode tersebut";
