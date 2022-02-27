@@ -90,7 +90,7 @@ class AntrianController extends Controller
                  * Printer Harus Dishare
                  * Nama Printer Contoh: Generic
                  */
-                $connector = new WindowsPrintConnector("POS8e0");
+                $connector = new WindowsPrintConnector("smb://192.168.67.249/POS80");
                 $printer = new Printer($connector);
 
                 /** RATA TENGAH */
