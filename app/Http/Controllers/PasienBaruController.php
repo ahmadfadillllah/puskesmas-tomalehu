@@ -34,7 +34,7 @@ class PasienBaruController extends Controller
         $pasien->no_hp = Str::replaceFirst('0', '62', $request->no_hp);
         $pasien->save();
 
-        $request->request->add(['pasien_id' => $pasien->id, 'status' => 'waiting']);
+        $request->request->add(['pasien_id' => $pasien->id, 'status' => 'temporary']);
         $anggota = Antrian::create($request->all());
         $request->request->add(['pasien_id' => $pasien->id, 'kode' => Str::random(5)]);
         $activation = pinActivation::create($request->all());
