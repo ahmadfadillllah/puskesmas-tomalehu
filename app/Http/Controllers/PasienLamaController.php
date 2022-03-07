@@ -77,7 +77,7 @@ class PasienLamaController extends Controller
         $update =  DB::table('pin_activation')->where('id', $dataPasien->id) ->update(['kode' => Str::random(5)]);
 
         $kode  = pinActivation::all()->where('id', $dataPasien->id)->first();
-        $token = "SX8w5onAy95QPzB8ZdkYKRrMW78uEn1LD8MNz5SVB6Jwa73f2P";
+        $token = "dMKQw8UZCpQfJCauNG5kVHUwMDWpcXbyxwzUmRnHGPhPmCzh2q";
         $phone = $dataPasien->no_hp; //atau bisa menggunakan 62812xxxxxxx
         $message = "Hai $dataPasien->nama_lengkap, PIN Antrian anda adalah [$kode->kode], Mohon untuk tidak menyebarkan kode tersebut";
         $messageid= "2EFD576575BF1741C3530xxxxxxxxx"; //optional

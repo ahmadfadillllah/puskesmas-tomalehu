@@ -52,7 +52,7 @@
 				<div class="row gx-0 align-items-center">
 					<div class="col-md-10 offset-md-1 col-lg-5 offset-lg-7 offset-xxl-6 ps-xxl-12 mt-md-n9 text-center text-lg-start" data-cues="slideInDown" data-group="page-title" data-delay="600">
 						<h1 class="display-2 mb-4 mx-sm-n2 mx-md-0">Welcome to Puskesmas Tomalehu</h1>
-						<p class="lead fs-lg mb-7 px-md-10 px-lg-0">Ini adalah sebuah aplikasi untuk memudahkan pasien dalam mengambil antrian dan obat.</p>
+						<p class="lead fs-lg mb-7 px-md-10 px-lg-0">Ini adalah sebuah aplikasi untuk memudahkan pasien dalam mengambil antrian.</p>
 						<div class="d-flex justify-content-center justify-content-lg-start" data-cues="slideInDown" data-group="page-title-buttons" data-delay="900">
 							<span><a class="btn btn-primary btn-icon btn-icon-start rounded me-2" href="{{ route('pasienBaru') }}"> Pasien Baru</a></span>
 							<span><a class="btn btn-green btn-icon btn-icon-start rounded" href="{{ route('pasienLama') }}"> Pasien Lama</a></span>
