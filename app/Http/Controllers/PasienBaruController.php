@@ -34,7 +34,7 @@ class PasienBaruController extends Controller
         $pasien->no_hp = Str::replaceFirst('0', '62', $request->no_hp);
         $pasien->save();
 
-        $request->request->add(['pasien_id' => $pasien->id, 'status' => 'waiting']);
+        $request->request->add(['pasien_id' => $pasien->id, 'status' => 'temporary']);
         $anggota = Antrian::create($request->all());
         $request->request->add(['pasien_id' => $pasien->id, 'kode' => Str::random(5)]);
         $activation = pinActivation::create($request->all());
@@ -45,7 +45,7 @@ class PasienBaruController extends Controller
         // dd($dataPasien);
         $kode  = pinActivation::all()->where('id', $dataPasien->id)->first();
 
-        $token = "SX8w5onAy95QPzB8ZdkYKRrMW78uEn1LD8MNz5SVB6Jwa73f2P";
+        $token = "L5QRebSrKpvsaKfRx6nSsK8RtmWZrVbXqxKiM1Ymn1ajqybLwz";
         $phone = $dataPasien->no_hp; //atau bisa menggunakan 62812xxxxxxx
         $message = "Hai $dataPasien->nama_lengkap, PIN Antrian anda adalah [$kode->kode], Mohon untuk tidak menyebarkan kode tersebut";
         $messageid= "2EFD576575BF1741C3530xxxxxxxxx"; //optional
