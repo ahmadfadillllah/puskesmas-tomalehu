@@ -48,7 +48,7 @@
 		<!-- /header -->
 		<section class="wrapper bg-soft-primary">
 			<div class="container pt-5 pb-15 py-lg-17 py-xl-19 pb-xl-20 position-relative">
-				<img class="position-lg-absolute col-12 col-lg-10 col-xl-11 col-xxl-10 px-lg-5 px-xl-0 ms-n5 ms-sm-n8 ms-md-n10 ms-lg-0 mb-md-4 mb-lg-0" src="{{ asset('home') }}/src/img/photos/devices.png" srcset="{{ asset('home') }}/src/img/photos/devices@2x.png 2x" data-cue="fadeIn" alt="" style="top: -1%; left: -21%;" />
+				<img class="position-lg-absolute col-12 col-lg-10 col-xl-11 col-xxl-10 px-lg-5 px-xl-0 ms-n5 ms-sm-n8 ms-md-n10 ms-lg-0 mb-md-4 mb-lg-0" src="{{ asset('home') }}/src/img/photos/devices.png" srcset="{{ asset('home') }}/src/img/puskesmas.png" data-cue="fadeIn" alt="" style="top: -1%; left: -21%;" />
 				<div class="row gx-0 align-items-center">
 					<div class="col-md-10 offset-md-1 col-lg-5 offset-lg-7 offset-xxl-6 ps-xxl-12 mt-md-n9 text-center text-lg-start" data-cues="slideInDown" data-group="page-title" data-delay="600">
 						<h1 class="display-2 mb-4 mx-sm-n2 mx-md-0">Welcome to Puskesmas Tomalehu</h1>
