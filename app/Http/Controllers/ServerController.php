@@ -12,9 +12,11 @@ class ServerController extends Controller
 {
     public function index(Request $request)
     {
+        $jumlahPasien = DB::table('pin_activation')->join('pasien', 'pin_activation.pasien_id', 'pasien.id')->count();
+        $jumlahAntrian = Antrian::wherenotNULL('nomor_antrian')->count();
         $dataPasien = Pasien::orderBy('id', 'ASC')->get();
 
-            return view('server.index', ['dataPasien' => $dataPasien]);
+            return view('server.index', ['dataPasien' => $dataPasien, 'jumlahPasien' => $jumlahPasien, 'jumlahAntrian' => $jumlahAntrian]);
 
     }
 
