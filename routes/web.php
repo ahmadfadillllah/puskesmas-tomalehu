@@ -18,6 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/contact', 'ServerController@contact')->name('contact');
+Route::post('/postcontact', 'ServerController@postcontact')->name('postcontact');
+
 //Auth
 Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/postlogin', 'AuthController@postlogin')->name('postlogin');

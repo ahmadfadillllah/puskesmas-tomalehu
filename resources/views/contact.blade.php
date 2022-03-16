@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="{{ asset('home') }}/src/img/favicon.png">
-	<title>Home - Puskesmas Tomalehu</title>
+	<title>Contact - Puskesmas Tomalehu</title>
 	<link rel="stylesheet" href="{{ asset('home') }}/src/css/plugins.css">
 	<link rel="stylesheet" href="{{ asset('home') }}/src/css/theme/aqua.css">
 	<link rel="stylesheet" href="{{ asset('home') }}/src/css/font/thicccboi.css">
@@ -46,17 +46,73 @@
 			<!-- /.navbar -->
 		</header>
 		<!-- /header -->
-		<section class="wrapper bg-soft-primary">
-			<div class="container pt-5 pb-15 py-lg-17 py-xl-19 pb-xl-20 position-relative">
-				<img class="position-lg-absolute col-12 col-lg-10 col-xl-11 col-xxl-10 px-lg-5 px-xl-0 ms-n5 ms-sm-n8 ms-md-n10 ms-lg-0 mb-md-4 mb-lg-0" src="{{ asset('home') }}/src/img/photos/devices.png" srcset="{{ asset('home') }}/src/img/puskesmas.png" data-cue="fadeIn" alt="" style="top: -1%; left: -21%;" />
-				<div class="row gx-0 align-items-center">
-					<div class="col-md-10 offset-md-1 col-lg-5 offset-lg-7 offset-xxl-6 ps-xxl-12 mt-md-n9 text-center text-lg-start" data-cues="slideInDown" data-group="page-title" data-delay="600">
-						<h1 class="display-2 mb-4 mx-sm-n2 mx-md-0">Welcome to Puskesmas Tomalehu</h1>
-						<p class="lead fs-lg mb-7 px-md-10 px-lg-0">Ini adalah sebuah aplikasi untuk memudahkan pasien dalam mengambil antrian.</p>
-						<div class="d-flex justify-content-center justify-content-lg-start" data-cues="slideInDown" data-group="page-title-buttons" data-delay="900">
-							<span><a class="btn btn-primary btn-icon btn-icon-start rounded me-2" href="{{ route('pasienBaru') }}"> Pasien Baru</a></span>
-							<span><a class="btn btn-green btn-icon btn-icon-start rounded" href="{{ route('pasienLama') }}"> Pasien Lama</a></span>
-						</div>
+		<section class="wrapper bg-light angled upper-end">
+			<div class="container py-14 py-md-16">
+				<div class="row">
+                    <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
+                        <h2 class="display-4 mb-3 text-center">Hubungi Kami</h2>
+						<p class="lead text-center mb-10">Silahkan menghubungi ke admin jika terkendala mengenai aplikasi ini.</p>
+                        @if (session('notification'))
+                        <div class="alert alert-dark" role="alert">
+                            {{ session('notification') }}
+                          </div>
+                        @endif
+						<form method="post" action="{{ route('postcontact') }}">
+                            @csrf
+							<div class="messages"></div>
+							<div class="controls">
+								<div class="row gx-4">
+									<div class="col-md-6">
+										<div class="form-label-group mb-4">
+											<input id="form_name" type="text" name="name" class="form-control" placeholder="Jane" required="required" data-error="Nama Lengkap is required.">
+											<label for="form_name">Nama Lengkap</label>
+											<div class="help-block with-errors"></div>
+										</div>
+									</div>
+									<!-- /column -->
+									<div class="col-md-6">
+										<div class="form-label-group mb-4">
+											<input id="form_lastname" type="text" name="nik" class="form-control" placeholder="Doe" required="required" data-error="NIK is required.">
+											<label for="form_lastname">NIK</label>
+											<div class="help-block with-errors"></div>
+										</div>
+									</div>
+									<!-- /column -->
+									<div class="col-md-6">
+										<div class="form-label-group mb-4">
+											<input id="form_email" type="email" name="email" class="form-control" placeholder="jane.doe@example.com" required="required" data-error="Valid email is required.">
+											<label for="form_email">Email *</label>
+											<div class="help-block with-errors"></div>
+										</div>
+									</div>
+									<!-- /column -->
+									<div class="col-md-6">
+										<div class="form-label-group mb-4">
+											<input id="form_phone" type="tel" name="no_hp" class="form-control" placeholder="Your phone number">
+											<label for="form_phone">No. Handphone</label>
+											<div class="help-block with-errors"></div>
+										</div>
+									</div>
+									<!-- /column -->
+									<div class="col-12">
+										<div class="form-label-group mb-4">
+											<textarea id="form_message" name="message" class="form-control" placeholder="Your message" rows="5" required="required" data-error="Message is required."></textarea>
+											<label for="form_message">Message *</label>
+											<div class="help-block with-errors"></div>
+										</div>
+									</div>
+									<!-- /column -->
+									<div class="col-12 text-center">
+										<input type="submit" class="btn btn-primary rounded-pill btn-send mb-3" value="Send message">
+										<p class="text-muted"><strong>*</strong> These fields are required.</p>
+									</div>
+									<!-- /column -->
+								</div>
+								<!-- /.row -->
+							</div>
+							<!-- /.controls -->
+						</form>
+						<!-- /form -->
 					</div>
 					<!-- /column -->
 				</div>
