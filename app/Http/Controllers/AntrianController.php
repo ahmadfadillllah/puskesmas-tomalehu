@@ -7,6 +7,7 @@ use App\Pasien;
 use App\Antrian;
 use Illuminate\Support\Facades\DB;
 use Exception;
+use Illuminate\Support\Str;
 
 class AntrianController extends Controller
 {
@@ -77,7 +78,7 @@ class AntrianController extends Controller
         $dataPasien = DB::table('antrian')
         ->join('pasien', 'antrian.pasien_id', 'pasien.id')
         ->where('nik_ktp', $request->nik_ktp)->first();
-        $nik_ktp = strlen($dataPasien->nik_ktp);
+        $nik_ktp = Str::of($dataPasien->nik_ktp)->mask('*', 11);
 
         // dd($dataPasien);
 
