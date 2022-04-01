@@ -12,7 +12,7 @@ function loadData() {
                                                   <div class="d-flex align-items-center">
                                                       <div class="avatar rounded">
                                                           <div class="avatar-content" style="color:gray">
-                                                          P${data[i].nomor_antrian}
+                                                          ${data[i].nomor_antrian}
                                                           </div>
                                                       </div>
                                                       <div>
