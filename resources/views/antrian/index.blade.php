@@ -83,7 +83,7 @@
                         <br>
                         <div class="bookmark-wrapper d-flex align-items-center">
                             <div class="more-info">
-                                <h6 class="mb-0">No Antrian Saat ini : P{{$dataAntrian->nomor_antrian}}
+                                <h6 class="mb-0">No Antrian Saat ini : {{$dataAntrian->nomor_antrian}}
                                 </h6>
                             </div>
                         </div>

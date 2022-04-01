@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Mike42\Escpos\Printer;
-use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
-
 use Illuminate\Http\Request;
 use App\Pasien;
 use App\Antrian;
@@ -80,6 +77,7 @@ class AntrianController extends Controller
         $dataPasien = DB::table('antrian')
         ->join('pasien', 'antrian.pasien_id', 'pasien.id')
         ->where('nik_ktp', $request->nik_ktp)->first();
+        $nik_ktp = strlen($dataPasien->nik_ktp);
 
         // dd($dataPasien);
 
@@ -101,12 +99,12 @@ class AntrianController extends Controller
                     .text('')
                 printer.align('left')
                     .text('Nama : $dataPasien->nama_lengkap')
-                    .text('NIK  : $dataPasien->nik_ktp')
+                    .text('NIK  : $nik_ktp')
                     .text('')
                 printer.align('center')
                     .text('Nomor Antrian Anda:')
                     .text('')
-                    .text('P$dataPasien->nomor_antrian')
+                    .text('$dataPasien->nomor_antrian')
                     .text('')
                     .text('Terimakasih telah menunggu')
                     .cut()
