@@ -78,9 +78,11 @@ class AntrianController extends Controller
         $dataPasien = DB::table('antrian')
         ->join('pasien', 'antrian.pasien_id', 'pasien.id')
         ->where('nik_ktp', $request->nik_ktp)->first();
-        $nik_ktp = Str::of($dataPasien->nik_ktp)->mask('*', 11);
+        // $nik_ktp = Str::of($dataPasien->nik_ktp)->mask('*', 11);
+        $nik_ktp = Str::of($dataPasien->nik_ktp)->limit(11, '*****');
 
-        // dd($dataPasien);
+        // dd($nik_ktp);
+
 
         if($dataPasien->nomor_antrian == NULL){
             return redirect()->route('lihatAntrian')->with('notification', 'NIK tersebut belum mengambil nomor antrian');
