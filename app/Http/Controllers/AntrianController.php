@@ -74,14 +74,28 @@ class AntrianController extends Controller
 
     public function cetakAntrian(Request $request)
     {
+        $request->validate([
+            'nik_ktp' => 'required|min:16|max:16|exists:pasien',
+        ],
+         [
+            'nik_ktp.required' => 'NIK KTP harus diisi',
+            'nik_ktp.exists' => 'NIK KTP tidak ada',
+            'nik_ktp.min' => 'NIK KTP harus berjumlah 16 digit',
+            'nik_ktp.max' => 'NIK KTP harus berjumlah 16 digit'
+        ]);
+
 
         $dataPasien = DB::table('antrian')
         ->join('pasien', 'antrian.pasien_id', 'pasien.id')
         ->where('nik_ktp', $request->nik_ktp)->first();
-        // $nik_ktp = Str::of($dataPasien->nik_ktp)->mask('*', 11);
+
         $nik_ktp = Str::of($dataPasien->nik_ktp)->limit(11, '*****');
 
-        // dd($nik_ktp);
+        $jumlah = DB::table('antrian')->join('pasien', 'antrian.pasien_id', 'pasien.id')
+        ->wherenotNULL('nomor_antrian')->where('status', 'waiting')
+        ->orderBy('nomor_antrian', 'ASC')->get()->count();
+
+        $totalantrian = $dataPasien->nomor_antrian - $jumlah;
 
 
         if($dataPasien->nomor_antrian == NULL){
@@ -109,7 +123,9 @@ class AntrianController extends Controller
                     .text('')
                     .text('$dataPasien->nomor_antrian')
                     .text('')
-                    .text('Terimakasih telah menunggu')
+                    .text('Silahkan menunggu nomor anda dipanggil')
+                    .text('')
+                    .text('Antrian yang belum dipanggil: $totalantrian orang')
                     .cut()
                     .print()
                 })

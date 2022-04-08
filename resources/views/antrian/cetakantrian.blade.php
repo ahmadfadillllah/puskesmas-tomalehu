@@ -33,6 +33,9 @@
                                                 <label class="form-label" for="largeInput">NIK KTP</label>
                                                 <input name="nik_ktp" class="form-control form-control-lg" type="text" placeholder="Masukkan NIK" />
                                             </div>
+                                            @error('nik_ktp')
+                                                <p>{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
