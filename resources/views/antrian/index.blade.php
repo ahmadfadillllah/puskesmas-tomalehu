@@ -95,7 +95,7 @@
                                     <input type="text" id="last-name-column" class="form-control" value="{{ $dataAntrian->id }}" name="id" hidden/>
                                     <li>
                                         <button type="submit" class="btn btn-success">Panggil</button>
-                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                        {{-- <button type="submit" class="btn btn-danger">Hapus</button> --}}
                                     </li>
                                 </ul>
                             </div>
