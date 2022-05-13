@@ -42,7 +42,7 @@ class PasienLamaController extends Controller
     {
 
         // dd($request->all());
-        $nomor = 1;
+        (int)$nomor = 1;
         $dataPasien = Pasien::all()->where('nik_ktp',$request->nik_ktp)->first();
         $dataAntrian = Antrian::all()->where('pasien_id', $dataPasien->id)->first();
         $data = Antrian::wherenotNULL('nomor_antrian')->count();
@@ -52,7 +52,7 @@ class PasienLamaController extends Controller
 
             if($dataAntrian->nomor_antrian == NULL){
 
-                $data = $data+$request->nomor_antrian;
+                (int)$data = (int)$data+(int)$request->nomor_antrian;
 
                 $success = DB::table('antrian')->join('pasien', 'antrian.pasien_id', 'pasien.id')
                 ->where('pasien.nik_ktp', $request->nik_ktp)
