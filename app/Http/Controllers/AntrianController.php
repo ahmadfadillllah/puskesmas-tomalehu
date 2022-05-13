@@ -95,7 +95,7 @@ class AntrianController extends Controller
         ->wherenotNULL('nomor_antrian')->where('status', 'waiting')
         ->orderBy('nomor_antrian', 'ASC')->get()->count();
 
-        $totalantrian = $dataPasien->nomor_antrian - $jumlah;
+        $totalantrian = $jumlah - $dataPasien->nomor_antrian;
 
 
         if($dataPasien->nomor_antrian == NULL){
