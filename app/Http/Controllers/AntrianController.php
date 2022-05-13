@@ -105,7 +105,7 @@ class AntrianController extends Controller
             print(<<<EOD
             <script src="https://cdn.jsdelivr.net/npm/recta/dist/recta.js"></script>
             <script type="text/javascript">
-              var printer = new Recta('7835492945', '1811')
+              var printer = new Recta('3119983605', '1811')
 
                 printer.open().then(function () {
                 printer.align('center')
