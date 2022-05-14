@@ -79,7 +79,7 @@ class PasienLamaController extends Controller
         $kode  = pinActivation::all()->where('id', $dataPasien->id)->first();
         $token = "NZxnya6kAvgta8FSReRykr5ZoD9kGrYxy3t4m5T99zfj2xBmYp";
         $phone = $dataPasien->no_hp; //atau bisa menggunakan 62812xxxxxxx
-        $message = "Hai $dataPasien->nama_lengkap, Kode Aktivasi adalah [$kode->kode], Mohon untuk tidak menyebarkan kode tersebut";
+        $message = "Hai $dataPasien->nama_lengkap, Kode Aktivasi anda adalah [$kode->kode], Mohon untuk tidak menyebarkan kode tersebut";
         $messageid= "2EFD576575BF1741C3530xxxxxxxxx"; //optional
 
         $curl = curl_init();
@@ -99,7 +99,7 @@ class PasienLamaController extends Controller
 
         $accesskey= "8b77591fe1ae830044d4cd1f96923d84";
         $phone = $dataPasien->no_hp; //atau bisa menggunakan 62812xxxxxxx
-        $message = "Hai $dataPasien->nama_lengkap, Kode Aktivasi adalah [$kode->kode], Mohon untuk tidak menyebarkan kode tersebut";
+        $message = "Hai $dataPasien->nama_lengkap, Kode Aktivasi anda adalah [$kode->kode], Mohon untuk tidak menyebarkan kode tersebut";
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
