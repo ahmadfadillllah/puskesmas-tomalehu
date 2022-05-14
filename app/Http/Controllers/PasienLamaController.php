@@ -115,7 +115,6 @@ class PasienLamaController extends Controller
         ));
         $responsesms = curl_exec($curl);
         curl_close($curl);
-        print_r($responsesms);
 
        if($responsewa or $responsesms){
 
