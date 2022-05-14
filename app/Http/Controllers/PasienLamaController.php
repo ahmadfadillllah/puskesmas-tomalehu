@@ -99,7 +99,7 @@ class PasienLamaController extends Controller
 
         $accesskey= "8b77591fe1ae830044d4cd1f96923d84";
         $phone = $dataPasien->no_hp; //atau bisa menggunakan 62812xxxxxxx
-        $message = "Hai $dataPasien->nama_lengkap,cek";
+        $message = "Hai $dataPasien->nama_lengkap, Kode Aktivasi adalah [$kode->kode], Mohon untuk tidak menyebarkan kode tersebut";
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
