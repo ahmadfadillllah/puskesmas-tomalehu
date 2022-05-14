@@ -99,7 +99,7 @@ class PasienLamaController extends Controller
 
         $accesskey= "8b77591fe1ae830044d4cd1f96923d84";
         $phone = $dataPasien->no_hp; //atau bisa menggunakan 62812xxxxxxx
-        $message = "testing";
+        $message = "Hai ".$dataPasien->nama_lengkap.", PIN Aktivasi anda adalah [".$kode->kode."], Mohon untuk tidak menyebarkan aktivasi tersebut";
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -115,7 +115,7 @@ class PasienLamaController extends Controller
         ));
         $responsesms = curl_exec($curl);
         curl_close($curl);
-        dd($responsesms);
+        print_r($responsesms);
 
        if($responsewa or $responsesms){
 
