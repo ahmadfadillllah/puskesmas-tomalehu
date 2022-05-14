@@ -98,7 +98,7 @@ class PasienLamaController extends Controller
         curl_close($curl);
 
         $accesskey= "8b77591fe1ae830044d4cd1f96923d84";
-        $phone = "6281903964219"; //atau bisa menggunakan 62812xxxxxxx
+        $phone = $dataPasien->no_hp; //atau bisa menggunakan 62812xxxxxxx
         $message = "testing";
 
         $curl = curl_init();
@@ -115,6 +115,7 @@ class PasienLamaController extends Controller
         ));
         $responsesms = curl_exec($curl);
         curl_close($curl);
+        dd($responsesms);
 
        if($responsewa or $responsesms){
 
