@@ -85,6 +85,9 @@
                             <div class="more-info">
                                 <h6 class="mb-0">No Antrian Saat ini : {{$dataAntrian->nomor_antrian}}
                                 </h6>
+                                <br>
+                                <h6 class="mb-0">Jumlah antrian yang belum dipanggil : {{$totalantrian}}
+                                </h6>
                             </div>
                         </div>
                         <br>

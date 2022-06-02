@@ -8,6 +8,7 @@ use App\Antrian;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Support\Str;
+use ParagonIE\Sodium\Compat;
 
 class AntrianController extends Controller
 {
@@ -18,11 +19,18 @@ class AntrianController extends Controller
         $dataAntrian = Antrian::orderBy('nomor_antrian', 'ASC')->wherenotNULL('nomor_antrian')->first();
 
         // dd($dataAntrian);
+        $jumlah = DB::table('antrian')->join('pasien', 'antrian.pasien_id', 'pasien.id')
+        ->wherenotNULL('nomor_antrian')->where('status', 'waiting')
+        ->orderBy('nomor_antrian', 'ASC')->get()->count();
+
+        $totalantrian = $jumlah - $dataAntrian->nomor_antrian;
+
         if(!$dataAntrian == NULL){
             return view('antrian.index',[
                 'dataPasien' => $dataPasien,
                 'jumlahPasien' => $jumlahPasien,
-                'dataAntrian' => $dataAntrian]);
+                'dataAntrian' => $dataAntrian,
+                'totalantrian' => $totalantrian]);
         }else{
             return redirect()->route('server')->with('notification', 'Antrian Masih Kosong');
         }
@@ -66,11 +74,11 @@ class AntrianController extends Controller
         }
     }
 
-    public function lihatAntrian()
+    public function lihatAntrian(Request $request)
     {
-
         return view('antrian.cetakantrian');
     }
+
 
     public function cetakAntrian(Request $request)
     {
