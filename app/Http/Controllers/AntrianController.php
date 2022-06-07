@@ -7,6 +7,7 @@ use App\Pasien;
 use App\Antrian;
 use Illuminate\Support\Facades\DB;
 use Exception;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Str;
 use ParagonIE\Sodium\Compat;
 
@@ -74,14 +75,14 @@ class AntrianController extends Controller
         }
     }
 
-    public function lihatAntrian(Request $request)
+    public function lihatAntrian()
     {
         return view('antrian.cetakantrian');
     }
 
-
-    public function cetakAntrian(Request $request)
+    public function validateAntrian(Request $request)
     {
+
         $request->validate([
             'nik_ktp' => 'required|min:16|max:16|exists:pasien',
         ],
@@ -92,7 +93,20 @@ class AntrianController extends Controller
             'nik_ktp.max' => 'NIK KTP harus berjumlah 16 digit'
         ]);
 
+        $dataPasien = DB::table('antrian')
+        ->join('pasien', 'antrian.pasien_id', 'pasien.id')
+        ->where('nik_ktp', $request->nik_ktp)->first();
 
+        if($dataPasien->nomor_antrian == NULL){
+            return redirect()->route('lihatAntrian')->with('notification', 'NIK tersebut belum mengambil nomor antrian');
+        }
+
+        return view('antrian.validateantrian', compact('dataPasien'));
+    }
+
+
+    public function cetakAntrian(Request $request)
+    {
         $dataPasien = DB::table('antrian')
         ->join('pasien', 'antrian.pasien_id', 'pasien.id')
         ->where('nik_ktp', $request->nik_ktp)->first();
