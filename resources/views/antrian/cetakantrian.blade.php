@@ -10,7 +10,7 @@
                         <script>
                             Swal.fire({
                                 title: 'Information',
-                                text: '{{{ session('notification') }}}',
+                                text: '{{ session('notification') }}',
                                 icon: 'info',
                                 confirmButtonText: 'Ok'
                             })

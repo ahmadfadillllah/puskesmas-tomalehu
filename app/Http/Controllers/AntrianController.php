@@ -154,7 +154,7 @@ class AntrianController extends Controller
             </script>
 EOD);
 
-            return view('antrian.cetakantrian')->with('notification', 'Berhasil Mencetak Struk');
+            return redirect()->route('lihatAntrian')->with('notification', 'Berhasil Mencetak Struk');
 
         }
 
