@@ -97,7 +97,19 @@
                                 <ul class="nav navbar-nav bookmark-icons">
                                     <input type="text" id="last-name-column" class="form-control" value="{{ $dataAntrian->id }}" name="id" hidden/>
                                     <li>
-                                        <button type="submit" class="btn btn-success">Panggil</button>
+                                        <button id="nextantrian" type="submit" class="btn btn-success">Panggil</button>
+                                        {{-- <button type="submit" class="btn btn-danger">Hapus</button> --}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>
+                        <br>
+                        <form action="/antrian/{{ $dataAntrian->nomor_antrian }}/skip" method="GET">
+                            <div class="bookmark-wrapper d-flex align-items-center">
+                                <ul class="nav navbar-nav bookmark-icons">
+                                    <input type="text" id="last-name-column" class="form-control" value="{{ $dataAntrian->id }}" name="id" hidden/>
+                                    <li>
+                                        <button type="submit" onclick="return confirm('Yakin ingin skip pasien tersebut?')" class="btn btn-warning">Next</button>
                                         {{-- <button type="submit" class="btn btn-danger">Hapus</button> --}}
                                     </li>
                                 </ul>
@@ -110,6 +122,8 @@
     {{-- Menampilkan Data --}}
     <script src="{{ asset('server/assets/js/tampil.js') }}"></script>
 
+
+
 <script>
     var table = document.getElementById("nilai"), sumHsl = 0;
     for(var t = 1; t < table.rows.length; t++)
@@ -128,6 +142,7 @@
     document.getElementById("hasil").innerHTML = "Sum Value = "+ sumHsl;
 
 </script>
+
 
 
 

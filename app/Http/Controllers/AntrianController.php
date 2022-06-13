@@ -24,7 +24,7 @@ class AntrianController extends Controller
         ->wherenotNULL('nomor_antrian')->where('status', 'waiting')
         ->orderBy('nomor_antrian', 'ASC')->get()->count();
 
-        $totalantrian = $jumlah - $dataAntrian->nomor_antrian;
+        $totalantrian = $dataAntrian->nomor_antrian - $jumlah;
 
         if(!$dataAntrian == NULL){
             return view('antrian.index',[
@@ -34,6 +34,20 @@ class AntrianController extends Controller
                 'totalantrian' => $totalantrian]);
         }else{
             return redirect()->route('server')->with('notification', 'Antrian Masih Kosong');
+        }
+
+    }
+
+    public function skip(Request $request, $id)
+    {
+
+        $dataPasien = DB::table('antrian')->join('pasien', 'antrian.pasien_id', 'pasien.id')->where('nomor_antrian', $id)->first();
+
+        $antrian = DB::table('antrian')->where('id', $dataPasien->id)->update(['nomor_antrian' => null, 'status' => 'done']);
+        if($antrian == true){
+            return redirect()->route('daftar-pasien')->with('notification', 'Pasien telah diskip');
+        }else{
+            return redirect()->route('daftar-pasien')->with('notification', 'Pasien gagal diskip');
         }
 
     }
@@ -117,7 +131,7 @@ class AntrianController extends Controller
         ->wherenotNULL('nomor_antrian')->where('status', 'waiting')
         ->orderBy('nomor_antrian', 'ASC')->get()->count();
 
-        $totalantrian = $jumlah - $dataPasien->nomor_antrian;
+        $totalantrian = $dataPasien->nomor_antrian - $jumlah;
 
 
         if($dataPasien->nomor_antrian == NULL){

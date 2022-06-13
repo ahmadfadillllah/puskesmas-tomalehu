@@ -55,6 +55,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/antrian', 'AntrianController@index')->name('antrian');
     Route::get('/antrian/{nomor_antrian}/keluhan', 'AntrianController@keluhan');
     Route::post('/antrian/{nomor_antrian}/updatekeluhan', 'AntrianController@updatekeluhan');
+    Route::get('/antrian/{nomor_antrian}/skip', 'AntrianController@skip');
 
     Route::get('/lihat-antrian', 'AntrianController@lihatAntrian')->name('lihatAntrian');
     Route::post('/validate-antrian', 'AntrianController@validateAntrian')->name('validateAntrian');
