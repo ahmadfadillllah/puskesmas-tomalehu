@@ -71,22 +71,24 @@
                                             <button type="submit" class="btn btn-primary me-1">Submit</button>
 
                                         </div>
-                                        <div class="col-6">
-                                            <form action="/antrian/{{ $dataPasien->nomor_antrian }}/skip" method="GET">
-                                                {{ csrf_field() }}
-                                                <div class="bookmark-wrapper d-flex align-items-center">
-                                                    <ul class="nav navbar-nav bookmark-icons">
-                                                        <input type="text" id="last-name-column" class="form-control" value="{{ $dataPasien->id }}" name="id" hidden/>
-                                                        <li>
-                                                            <button type="submit" onclick="return confirm('Yakin ingin skip pasien tersebut?')" class="btn btn-warning">Skip</button>
-                                                            {{-- <button type="submit" class="btn btn-danger">Hapus</button> --}}
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </form>
-                                        </div>
+
                                     </div>
                                 </form>
+                                <br>
+                                <div class="col-6">
+                                    <form action="/antrian/{{ $dataPasien->nomor_antrian }}/skip" method="GET">
+                                        {{ csrf_field() }}
+                                        <div class="bookmark-wrapper d-flex align-items-center">
+                                            <ul class="nav navbar-nav bookmark-icons">
+                                                <input type="text" id="last-name-column" class="form-control" value="{{ $dataPasien->id }}" name="id" hidden/>
+                                                <li>
+                                                    <button type="submit" onclick="return confirm('Yakin ingin skip pasien tersebut?')" class="btn btn-warning">Skip</button>
+                                                    {{-- <button type="submit" class="btn btn-danger">Hapus</button> --}}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
