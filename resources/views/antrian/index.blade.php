@@ -104,17 +104,7 @@
                             </div>
                         </form>
                         <br>
-                        <form action="/antrian/{{ $dataAntrian->nomor_antrian }}/skip" method="GET">
-                            <div class="bookmark-wrapper d-flex align-items-center">
-                                <ul class="nav navbar-nav bookmark-icons">
-                                    <input type="text" id="last-name-column" class="form-control" value="{{ $dataAntrian->id }}" name="id" hidden/>
-                                    <li>
-                                        <button type="submit" onclick="return confirm('Yakin ingin skip pasien tersebut?')" class="btn btn-warning">Next</button>
-                                        {{-- <button type="submit" class="btn btn-danger">Hapus</button> --}}
-                                    </li>
-                                </ul>
-                            </div>
-                        </form>
+
             </div>
         </div>
     </div>
