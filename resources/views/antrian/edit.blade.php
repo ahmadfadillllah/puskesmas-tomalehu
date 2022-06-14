@@ -78,7 +78,7 @@
                                                     <ul class="nav navbar-nav bookmark-icons">
                                                         <input type="text" id="last-name-column" class="form-control" value="{{ $dataPasien->id }}" name="id" hidden/>
                                                         <li>
-                                                            <button type="submit" onclick="return confirm('Yakin ingin skip pasien tersebut?')" class="btn btn-warning">Next</button>
+                                                            <button type="submit" onclick="return confirm('Yakin ingin skip pasien tersebut?')" class="btn btn-warning">Skip</button>
                                                             {{-- <button type="submit" class="btn btn-danger">Hapus</button> --}}
                                                         </li>
                                                     </ul>
